@@ -1,9 +1,20 @@
-// 1. Grab your HTML elements (with basic TS type casting)
-const button = document.getElementById('my-button') as HTMLButtonElement;
+const form = document.getElementById('form') as HTMLFormElement;
 const outputDiv = document.getElementById('output') as HTMLDivElement;
 
-// 2. Add your classic event listener
-button.addEventListener('click', () => {
-  outputDiv.innerText = "Button clicked! This is where your API logic will go.";
-  console.log("TS is connected and working perfectly!");
-});
+
+const showResult = (event: SubmitEvent) =>
+{
+  // `as` is a type assertion, not renaming (unlike how it works in python imports)
+  // this doesn't actually guarantee freedom from runtime errors!!!
+  // always ensure this is actually an input element in the HTML.
+  const inputElement = document.getElementById('user-input') as HTMLInputElement;
+  if (inputElement != null)
+  {
+    let input: string = inputElement.value;
+    outputDiv.innerText = input;
+  }
+
+  event.preventDefault();
+}
+
+form.addEventListener('submit', showResult);
