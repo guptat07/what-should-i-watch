@@ -27,6 +27,7 @@ const showResult = async (event: SubmitEvent) =>
     const request: Request = new Request('google.com');
     const data: Response = await callGemini.fetch(request);
     console.log(data);
+    outputDiv.innerText = input;
   }
   catch (error)
   {
