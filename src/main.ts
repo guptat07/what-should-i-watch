@@ -20,8 +20,16 @@ const showResult = async (event: SubmitEvent) =>
 
   try
   {
-    const response: Response = await fetch('api/callgemini');
+    const response: Response = await fetch('api/callgemini', {
+      method: 'POST',
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ prompt: input }),
+    });
+
     const data = await response.json();
+
     console.log(data);
     outputDiv.innerText = JSON.stringify(data, null, 2);
   }
