@@ -1,9 +1,5 @@
-import callGemini from '../api/callgemini.ts';
-
 const form = document.getElementById('form') as HTMLFormElement;
 const outputDiv = document.getElementById('output') as HTMLDivElement;
-
-// const geminiKey: string = import.meta.env.GEMINI_API_KEY;
 
 const showResult = async (event: SubmitEvent) =>
 {
@@ -24,10 +20,10 @@ const showResult = async (event: SubmitEvent) =>
 
   try
   {
-    const request: Request = new Request('google.com');
-    const data: Response = await callGemini.fetch(request);
+    const response: Response = await fetch('api/callgemini');
+    const data = await response.json();
     console.log(data);
-    outputDiv.innerText = input;
+    outputDiv.innerText = JSON.stringify(data, null, 2);
   }
   catch (error)
   {
