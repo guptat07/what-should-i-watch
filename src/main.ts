@@ -37,11 +37,6 @@ const showResult = async (event: SubmitEvent) =>
   {
     console.error(error);
   }
-  // if (inputElement != null)
-  // {
-  //   // let input: string = inputElement.value;
-  //   outputDiv.innerText = ;
-  // }
 }
 
 form.addEventListener('submit', showResult);
