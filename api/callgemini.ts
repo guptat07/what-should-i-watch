@@ -177,6 +177,7 @@ Guidelines:
    - There MUST be an EXPLICIT mention of some kind of streaming service/provider, regional availability, or intent to purchase if watch_region, with_watch_monetization_types, with_watch_providers have a value.
    - There MUST be an EXPLICIT mention of exclusion (e.g., "without", "don't want", "aren't by", "don't star", etc.) if without_companies, without_genres, without_keywords, without_watch_providers have a value.
 3. Studio vs Person vs Provider distinction:
+   - Return NAMES for Studios, Providers, and People. I will process your response and find out the TMDB IDs myself.
    - Studios (MGM, Universal, Disney, A24, etc.) belong in "with_companies", NEVER "with_people".
    - Humans (actors, directors, crew) belong in "with_people" or "with_crew"/"with_cast".
    - Studios ONLY belong in "with_watch_providers" if they are BOTH a provider/platform a user can access AND are described as a provider by the user (e.g., "on disney plus").
