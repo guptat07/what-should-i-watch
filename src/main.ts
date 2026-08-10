@@ -1,9 +1,10 @@
 const form = document.getElementById('form') as HTMLFormElement;
-const outputDiv = document.getElementById('output') as HTMLDivElement;
+// const outputDiv = document.getElementById('output') as HTMLDivElement;
 
 const showResult = async (event: SubmitEvent) =>
 {
   event.preventDefault();
+  
   // `as` is a type assertion, not renaming (unlike how it works in python imports)
   // this doesn't actually guarantee freedom from runtime errors!!!
   // always ensure this is actually an input element in the HTML.
@@ -12,6 +13,7 @@ const showResult = async (event: SubmitEvent) =>
   {
     return;
   }
+  
   const input: string = inputElement.value;
   if (!input)
   {
@@ -20,7 +22,7 @@ const showResult = async (event: SubmitEvent) =>
 
   try
   {
-    const response: Response = await fetch('api/callgemini', {
+    const response: Response = await fetch('api/callApi', {
       method: 'POST',
       headers: {
         "Content-Type": "application/json",
@@ -30,8 +32,25 @@ const showResult = async (event: SubmitEvent) =>
 
     const data = await response.json();
 
-    console.log(data);
-    outputDiv.innerText = JSON.stringify(data, null, 2);
+    for (const key in data)
+    {
+      if (data[key] === "")
+      {
+        delete data[key];
+      }
+    }
+
+    try
+    {
+      const response2: Response = await fetch('api/calltmdb', {
+        method: 'POST',
+
+      });
+    }
+    catch
+    {
+
+    }
   }
   catch (error)
   {
