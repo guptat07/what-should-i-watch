@@ -41,12 +41,14 @@ Guidelines:
    - Return NAMES for Studios, Watch Providers, and People. I will process your response and find out the TMDB IDs myself.
    - STUDIOS (MGM, Universal, Disney, A24, etc.) ARE PRODUCTION AND THEATRICAL DISTRIBUTION COMPANIES and belong in "with_companies", NEVER "with_people" or "with_watch_providers".
    - Humans (actors, directors, crew) belong in "with_people".
-   - STREAMING PLATFORMS (Netflix, Hulu, Disney+, Amazon Prime Video, etc.) ARE WATCH PROVIDERS and belong in "with_watch_providers", NEVER "with_companies" or "with_people".
+   - STREAMING PLATFORMS (Netflix, Hulu, Disney Plus, Amazon Prime Video, etc.) ARE WATCH PROVIDERS and belong in "with_watch_providers", NEVER "with_companies" or "with_people".
    - Consider: A Studio is an attribute of the film's creation and cannot change from region to region. A Watch Provider depends on the watch_region. It's about who made the movie versus where it is currently available.
-   - Example: "Old Hollywood MGM Musicals" is referring to MGM as a STUDIO, NOT the MGM+ streaming service. A movie like "Singin' in the Rain" may or may not be on MGM+, but it will always be an MGM production!
+   - Example: "Old Hollywood MGM Musicals" is referring to MGM as a STUDIO, NOT the MGM Plus streaming service. A movie like "Singin' in the Rain" may or may not be on MGM Plus, but it will always be an MGM production!
    - Example: "Netflix originals" is referring to Netflix as a WATCH PROVIDER!
    - Be specific with the names for Studios and Watch Providers as TMDB's search/company endpoint returns unreliable results otherwise.
    - Example: A user asking for "Disney movies" requires you to give me a value like "Pixar|Walt Disney Studio". The endpoint returns irrelevant results if I query the term "Disney".
+   - Example: If you determine that the user wants a movie produced by MGM, return "Metro-Goldwyn-Mayer" rather than the abbreviation.
+   - Example: For Watch Providers, spell out the title. Give "Disney Plus" rather than the potentially user-provided "Disney+". Give "Amazon Prime Video" rather than the potential "Prime".
 5. A value can ONLY exist in with OR without, but NEVER with AND without.
    - Example: A24 can only be in "with_companies" or "without_companies", but NEVER both.
    - Example: MGM can only be in "with_companies" or "without_companies", but NEVER both.
@@ -237,7 +239,7 @@ export default {
     }
 
     // Preprocess TMDB input
-    // Step 1/2: Turn strings into TMDB IDs where needed
+    // Step 1/3: Turn strings into TMDB IDs where needed
     // Step 1/3: Function to actually split up the names
     let parse = (input: string): { names: string[], delimiter: "," | "|" | "" } =>
     {
@@ -339,7 +341,8 @@ export default {
         searchParameters.without_keywords = await searchId("without_keywords");
     }
 
-    // Step 2/2: Rename JSON keys so they match the TMDB names
+    // Step 2/3: Rename JSON keys so they match the TMDB names
+    // Step 1/2: Create a mapping of Gemini-friendly names to the actual parameters
     const tmdbParamNames: Record<string, string> ={
         minimum_age_rating: "certification.gte",
         maximum_age_rating: "certification.lte",
@@ -355,6 +358,7 @@ export default {
         maximum_runtime: "with_runtime.lte"
     }
 
+    // Step 2/2: Go through searchParameters and replace by copying
     for (const geminiName in tmdbParamNames)
     {
         if (searchParameters[geminiName])
@@ -365,7 +369,50 @@ export default {
         }
     }
 
-    // TODO: JustWatch stuff
+    // Step 3/3: Handle Watch Providers
+    // If there is a watch provider given, there SHOULD also be a watch region given
+    if (searchParameters.with_watch_providers && searchParameters.watch_region)
+    {
+        // Use these to get the list of streaming providers
+        const parsedNames: { names: string[], delimiter: "," | "|" | "" } = parse(searchParameters.with_watch_providers);
+        let idList: string[] = [];
+
+        // Just get the API response once
+        try
+            {
+                const watchProviderUrl = `https://api.themoviedb.org/3/watch/providers/movie?watch_region=${encodeURIComponent(searchParameters.watch_region)}`;
+                const response: Response = await fetch(watchProviderUrl, {
+                    method: 'GET',
+                    headers: {
+                        accept: 'application/json',
+                        Authorization: `Bearer ${tmdbApiKey}`
+                    }
+                });
+
+                const data = await response.json();
+                if (data.results && data.results.length > 0)
+                {
+                    // Go through all watch providers and find a match
+                    for (const name of parsedNames.names)
+                    {
+                        for (const result of data.results)
+                        {
+                            if (result.provider_name.toLowerCase() === name.toLowerCase())
+                            {
+                                idList.push(result.provider_id.toString());
+                            }
+                        }
+                    }
+
+                    searchParameters.with_watch_providers = idList.join(parsedNames.delimiter);
+                }
+
+            }
+            catch (error)
+            {
+                console.log(`Error getting list of watch providers for region ${searchParameters.watch_region}:`, error);
+            }
+    }
 
     // Make the query to TMDB
     const urlSearchParams: URLSearchParams = new URLSearchParams(searchParameters);
