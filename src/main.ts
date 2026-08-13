@@ -1,5 +1,5 @@
 const form = document.getElementById('form') as HTMLFormElement;
-// const outputDiv = document.getElementById('output') as HTMLDivElement;
+const outputDiv = document.getElementById('output') as HTMLDivElement;
 
 const showResult = async (event: SubmitEvent) =>
 {
@@ -31,26 +31,8 @@ const showResult = async (event: SubmitEvent) =>
     });
 
     const data = await response.json();
-
-    for (const key in data)
-    {
-      if (data[key] === "")
-      {
-        delete data[key];
-      }
-    }
-
-    try
-    {
-      const response2: Response = await fetch('api/calltmdb', {
-        method: 'POST',
-
-      });
-    }
-    catch
-    {
-
-    }
+    console.log(data);
+    outputDiv.innerText = JSON.stringify(data, null, 2);
   }
   catch (error)
   {
