@@ -93,7 +93,7 @@ const tmdbJsonSchema = {
         },
         language: {
             type: "string",
-            description: "ISO 639-1 language code."
+            description: "ISO 639-1 language code to display results in. Use the language of the input."
         },
         primary_release_year: {
             type: "integer",
