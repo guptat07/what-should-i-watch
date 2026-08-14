@@ -29,7 +29,7 @@ Guidelines:
    - There MUST be an EXPLICIT mention of some kind of scoring/rating or popularity if minimum_vote_average, maximum_vote_average, minimum_vote_count, maximum_vote_count have a value. CRITICAL RECEPTION AND AWARDS (e.g., "Best Picture winners") DO NOT COUNT!
    - There MUST be an EXPLICIT mention of some kind of streaming service/provider, regional availability, or intent to purchase if watch_region, with_watch_monetization_types, with_watch_providers have a value.
    - There MUST be an EXPLICIT mention of exclusion (e.g., "without", "don't want", "aren't by", "don't star", etc.) if without_companies, without_genres, without_keywords, without_watch_providers have a value.
-3. Fields Used in Conjunction:
+3. Some Fields Need to be Used Together:
    - Some fields MUST be used in conjunction with another.
    - There MUST be a value for region if there is a value for any of certification, minimum_age_rating, maximum_age_rating.
    - There MUST be a value for any of certification, minimum_age_rating, or maximum_age_rating if there is a value for certification_country.
@@ -232,11 +232,14 @@ export default {
     // If the API accidentally returned empty keys, remove them
     for (const param in searchParameters)
     {
-        if (searchParameters[param] == null || searchParameters[param] === "")
+        if (searchParameters[param] == null || searchParameters[param] === "" || searchParameters[param] === "null")
         {
             delete searchParameters[param];
         }
     }
+
+    // DEBUG:
+    console.log("Sanitized output:", JSON.stringify(searchParameters, null, 2));
 
     // Preprocess TMDB input
     // Step 1/3: Turn strings into TMDB IDs where needed
