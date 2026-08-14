@@ -57,6 +57,7 @@ Guidelines:
    - It is okay to provide values for keywords, but be nonspecific.
    - Negative Example: keywords: "math genius,boston, massachusetts,psychiatry,mentor,working class" is TOO SPECIFIC because commas represent (AND).
    - Positive Example: keywords: "math genius|boston, massachusetts|psychiatry|mentor|working class" is OKAY because pipes represent (OR).
+   - It is OKAY to be generous with keywords!
    - Basic, DIRECT information about the film like with_genres: 18 is also acceptable.
    - You DO NOT KNOW that this query means the user wants films from the same country, decade, with the same language, age rating, vote score, etc.
    - Example: A human might recommend "The Holdovers" if given this input.
