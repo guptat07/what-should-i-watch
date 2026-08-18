@@ -3,17 +3,20 @@ body {
   color: var(--text-color);
 }
 
-/* h1 {
+h1 {
   font-family: "Archivo Black", sans-serif;
   font-size: 110px;
   line-height: 77px;
   letter-spacing: -6.6px;
   color: var(--emphasis-color);
-  margin: 0;
+
+  text-align: center;
+
+  -webkit-text-stroke: 4px var(--emphasis-color);
 }
 
 .stroke {
-color: var(--bg);
+/* color: var(--bg);
   text-shadow:
     3px  0 0 var(--emphasis-color),
     -3px  0 0 var(--emphasis-color),
@@ -22,8 +25,9 @@ color: var(--bg);
      2.12px  2.12px 0 var(--emphasis-color),
     -2.12px  2.12px 0 var(--emphasis-color),
      2.12px -2.12px 0 var(--emphasis-color),
-    -2.12px -2.12px 0 var(--emphasis-color);
-} */
+    -2.12px -2.12px 0 var(--emphasis-color); */
+  color: transparent;
+}
 
 #content-container {
   display: flex;
