@@ -1,13 +1,13 @@
 body {
-  font-size: 16px;
+  font-size: 1rem;
   color: var(--text-color);
 }
 
 h1 {
   font-family: "Archivo Black", sans-serif;
-  font-size: 110px;
-  line-height: 77px;
-  letter-spacing: -6.6px;
+  font-size: 6.875rem;
+  line-height: 4.8125rem;
+  letter-spacing: -.4125rem;
   color: var(--emphasis-color);
 
   text-align: center;
