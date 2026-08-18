@@ -3,20 +3,26 @@
   <head>
     <meta charset="UTF-8" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="stylesheet" href="src/style.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Tilt+Warp&display=swap" rel="stylesheet">
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>What Should I Watch?</title>
   </head>
   <body>
     <nav>
       <p>About (navbar placeholder)</p>
-      <p>Light Mode (placeholder)</p>
     </nav>
-    <h1>What Should I Watch? (logo placeholder)</h1>
-    <form id="form">
-      <input type="text" name="user-input" id="user-input" placeholder="A sci-fi movie from the 80s!">
-      <input type="submit" name="submit" id="submit" value="Get Recommendations">
-    </form>
-    <div id="output"></div>
+    <!-- <h1><span class="stroke">WHAT<br>SHOULD I<br></span>WATCH?</h1> -->
+    <div id="content-container">
+      <img id="site-logo" src="src/assets/WHAT SHOULD I WATCH_.png" alt="What Should I Watch site logo.">
+      <form id="form">
+        <input type="text" name="user-input" id="user-input" placeholder="A sci-fi movie from the 80s!">
+        <input type="submit" name="submit" id="submit" value="Get Recommendations">
+      </form>
+      <div id="output"></div>
+    </div>
     <script type="module" src="/src/main.ts"></script>
     <footer>Made by Tony Gupta</footer>
   </body>
