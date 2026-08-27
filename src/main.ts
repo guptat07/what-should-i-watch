@@ -1,5 +1,5 @@
 const form = document.getElementById('form') as HTMLFormElement;
-const outputDiv = document.getElementById('output') as HTMLDivElement;
+const outputDiv = document.getElementById('output-container') as HTMLDivElement;
 
 const showResult = async (event: SubmitEvent) =>
 {
