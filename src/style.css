@@ -25,10 +25,11 @@ div {
   display: flex;
   flex-direction: column;
   align-items: center;
+  gap: 2rem;
 
   width: 100%;
   box-sizing: border-box;
-  padding: 0 10%;
+  padding: 0 5%;
 }
 
 .search {
@@ -78,6 +79,24 @@ form {
 
   width: 100%;
   max-width: 714px;
+
+  input[type="submit"] {
+    background-color: var(--emphasis-color);
+    border: 1px solid transparent;
+    border-radius: 10px;
+    padding: 11px 10px;
+    transition: border 0.15s;
+
+
+    font-family: "Archivo Black";
+    font-size: 16px;
+    letter-spacing: -4%;
+    color: var(--text-color);
+  }
+
+  input[type="submit"]:hover {
+    border: 1px solid var(--text-color);
+  }
 }
 
 #site-logo {
