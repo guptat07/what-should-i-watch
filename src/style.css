@@ -5,6 +5,51 @@ body {
   color: var(--text-color);
 }
 
+.navbar {
+  z-index: 1000;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  box-sizing: border-box;
+  padding: 0 5%;
+
+  background-color: var(--bg);
+
+  ul {
+    list-style-type: none;
+    margin-top: 17px;
+    margin-bottom: 0px;
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+
+    li {
+      display: flex;
+      align-items: center;
+
+      a {
+        display: flex;
+        align-items: center;
+        
+        text-decoration: none;
+        color: var(--text-color);
+        font-size: 24px;
+        font-weight: 600;
+        font-variation-settings:
+          "wdth" 95%;
+
+        img {
+          max-width: 104px;
+          height: auto;
+        }
+      }
+    }
+  }
+}
+
 h1 {
   font-family: "Archivo Black", sans-serif;
   font-size: 6.875rem;
@@ -17,9 +62,9 @@ h1 {
   -webkit-text-stroke: 4px var(--emphasis-color);
 }
 
-div {
+/* div {
   border: 3px solid aqua;
-}
+} */
 
 .container {
   display: flex;
@@ -30,12 +75,14 @@ div {
   width: 100%;
   box-sizing: border-box;
   padding: 0 5%;
+  margin-top: 15vh;
 }
 
 .search {
   height: 60px;
   width: 100%;
   position: relative;
+  margin-top: 30px;
 
   svg {
     fill: var(--icon);
@@ -92,6 +139,7 @@ form {
     font-size: 16px;
     letter-spacing: -4%;
     color: var(--text-color);
+    margin-top: 15px;
   }
 
   input[type="submit"]:hover {
