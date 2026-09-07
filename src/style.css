@@ -20,6 +20,7 @@ body {
     list-style-type: none;
     margin-top: 17px;
     margin-bottom: 0px;
+    padding-left: 0px;
     overflow: hidden;
     display: flex;
     justify-content: center;
