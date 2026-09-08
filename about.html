@@ -6,7 +6,7 @@
     <link rel="stylesheet" href="src/style.css" />
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Noto+Serif:wdth,wght@62.5..100,100..900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Noto+Serif:ital,wdth,wght@0,62.5..100,100..900;1,62.5..100,100..900&display=swap" rel="stylesheet">
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>About | What Should I Watch?</title>
   </head>
@@ -20,6 +20,42 @@
       </div>
     </nav>
     <div class="container">
-        <p>About Placeholder</p>
+        <p>
+          This product uses the TMDB API but is not endorsed or certified by TMDB.
+        </p>
+        <img src="src/assets/TMDB.svg" alt="TMDB logo" width="200px">
+        <p>
+          This website uses the Google Gemini API to parse user input and return a structured set of information that can be
+          used to query the TMDB API.
+          No information other than what you type into the search field is collected or processed by the site.
+        </p>
+        <p>
+          Due to the APIs used, the website may make mistakes.
+          This is because the site uses the discover movies endpoint on TMDB, which has no parameter for terms
+          that are more useful when searching by title. Gemini must classify these terms as keywords.
+          Since Gemini provides non-deterministic output, there is no way to tell if it will provide the phrase
+          as a keyword or break down the associations the term has. TMDB is also a highly opinionated platform
+          (e.g., they still list <i>Warriors of the Wind</i> as the primary title of <i>Nausicaä of the Valley of the Wind</i>).
+          <br>
+          For example, searching for "James Bond" will return films that
+          are in the 007 series as well as other films (generally spy films).
+          With "James Bond," this tends to work out; the films
+          do not have the main character's name in their title, so TMDB often lists it as a keyword in their entries.
+          If you see results from series like <i>Mission: Impossible</i>, it most likely (but not certainly) means that
+          keywords like "spy," "espionage," etc. have been added by Gemini.
+          <br>
+          Searching for "Lupin III" may return no results. This is because the titles of the films in that series usually contain
+          the main character's name, so TMDB does not include it as a keyword. It also means that Gemini tends not to break down
+          "Lupin III" into associated keywords like "thief."
+        </p>
+        <p>
+          The point of—and therefore, the best way to use—this tool is as a way to capture your mood when you have an idea
+          of what you want to watch, but aren't totally sure what movies match those vibes; it's best as a way to avoid
+          doomscrolling on a streaming service for two hours before realizing that it's too late to watch anything now.
+          <br>
+          For that reason, I don't recommend using it for terms like "James Bond" or "Lupin III" in the first place. If you
+          know that you want to watch <i>Star Wars</i>, you can easily find a list of the films in that series online and
+          select one.
+        </p>
     </div>
   </body>
