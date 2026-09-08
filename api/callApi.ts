@@ -431,10 +431,21 @@ export default {
             }
         });
 
-        const data = await response.json();
+        const data = (await response.json()).results?.slice(0, 10) || [];
+
+        const trimmedData = data.map((movie: {
+            title: string, overview: string, release_date: string, poster_path: string
+        }) => {
+            return {
+                title: movie.title,
+                overview: movie.overview,
+                release_date: movie.release_date,
+                poster_path: movie.poster_path
+            };
+        });
         // DEBUG
         // console.log(JSON.stringify(data, null, 2));
-        return Response.json(data);
+        return Response.json(trimmedData);
     }
     catch (error)
     {

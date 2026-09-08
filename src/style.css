@@ -76,7 +76,7 @@ h1 {
   width: 100%;
   box-sizing: border-box;
   padding: 0 5%;
-  margin-top: 15vh;
+  margin-top: 20vh;
 }
 
 .search {
@@ -152,6 +152,11 @@ form {
   width: 100%;
   max-width: 571px;
   height: auto;
+}
+
+footer {
+  display: flex;
+  justify-content: center;
 }
 
 :root {
