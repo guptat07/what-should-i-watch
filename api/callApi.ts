@@ -212,7 +212,7 @@ export default {
     
     // Gemini Request using the user input
     const response = await ai.interactions.create({
-        model: "gemini-3.5-flash-lite",
+        model: "gemini-3.6-flash",
         system_instruction: prompt,
         input: input,
         response_format: {
