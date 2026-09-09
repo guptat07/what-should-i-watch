@@ -20,6 +20,11 @@ const showResult = async (event: SubmitEvent) =>
     return;
   }
 
+  // Show user that input accepted: clear field + loader
+  outputDiv.replaceChildren();
+  inputElement.value = "";
+  outputDiv.innerText = "Loading";
+
   try
   {
     const response: Response = await fetch('api/callApi', {

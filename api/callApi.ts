@@ -240,7 +240,7 @@ export default {
     }
 
     // DEBUG:
-    // console.log("Sanitized output:", JSON.stringify(searchParameters, null, 2));
+    console.log("Sanitized output:", JSON.stringify(searchParameters, null, 2));
 
     // Preprocess TMDB input
     // Step 1/3: Turn strings into TMDB IDs where needed

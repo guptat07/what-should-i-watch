@@ -173,6 +173,7 @@ footer {
 
 .movie-container {
   display: flex;
+  gap: 1rem;
 }
 
 .poster-container {
